@@ -1,0 +1,47 @@
+function [new_image] = ConvertColorSpace(input_image, colorspace)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Converts an RGB image into a specified color space, visualize the 
+% color channels and returns the image in its new color space.                     
+%                                                        
+% Colorspace options:                                    
+%   opponent                                             
+%   rgb -> for normalized RGB
+%   hsv
+rgb2hsv
+%   ycbcr
+rgb2ycbcr
+%   gray
+% lightness: most prominent and least colors (max(R,G,B)+min(R,G,B))/2
+% average the values: (R+G+B)/3
+% luminosity: average sensitivy 0.21R+0.72G+0.07B
+% P.S: Do not forget the visualization part!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% convert image into double precision for conversions
+input_image = im2double(input_image);
+
+if strcmp(colorspace, 'opponent')
+    new_image = rgb2opponent(input_image); % fill in this function
+elseif strcmp(colorspace, 'rgb')  
+    new_image = rgb2normedrgb(input_image); % fill in this function
+elseif strcmp(colorspace, 'hsv')   
+    % use the built-in function
+    H = rgb2hsv(M);
+    hsv_image = rgb2hsv(rgb_image);
+    
+elseif strcmp(colorspace, 'ycbcr')
+    % use the built-in function
+    rgb2ycbcr
+elseif strcmp(colorspace, 'gray')
+    new_image = rgb2grays(input_image); % fill in this function
+else
+% if user inputs an unknow colorspace just notify and do not plot anything
+    fprintf('Error: Unknown colorspace type [%s]...\n',colorspace);
+    new_image = input_image;
+    return;
+end
+
+visualize(new_image); % fill in this function
+
+end

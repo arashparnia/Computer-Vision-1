@@ -1,0 +1,16 @@
+function [output_image] = rgb2normedrgb(input_image)
+% converts an RGB image into normalized rgb
+
+Im = imread('peppers.png');
+I = im2double(Im);
+
+image_red = I(:,:,1);
+image_green = I(:,:,2);
+image_blue = I(:,:,3);
+
+S = image_red+image_green+image_blue;
+NV = B/S;
+B = NV;
+
+end
+

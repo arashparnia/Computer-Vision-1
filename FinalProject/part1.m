@@ -23,21 +23,13 @@ vocabulary_size = 1200 ;
 
 
 %% histogram for each training image using HE fucntion
-% motorbikes
-H_motorbikes = image_path_to_hist('Caltech4/ImageSets/train_motorbikes.txt',centers,vocabulary_size);
+H_faces = image_path_to_hist('Caltech4/ImageSets/train_faces.txt',centers,vocabulary_size);
 
   % saving H to file  
-save('H_motorbikes','H_motorbikes');
+save('H_faces','H_faces');
 
 
-%% loading H 
 
-
-% load('H');
-for i = 1:20
-    figure,hist(H_motorbikes{i});
-    
-end
 
 % train(training_label_vector, training_instance_matrix, 'liblinear_options', 'col');
 

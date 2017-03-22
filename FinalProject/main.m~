@@ -7,3 +7,12 @@ clearvars;
 
 
 part1
+
+%% loading H 
+
+
+% load('H_motorbikes');
+% for i = 1:10:100
+%     subplot(5,5),hist(H_motorbikes{i},1200);
+%     
+% end

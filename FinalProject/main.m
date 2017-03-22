@@ -6,4 +6,15 @@ clearvars;
 % RandStream.setGlobalStream(s);
 
 
-part1
+% part1
+
+%% loading H 
+
+
+% load('H_motorbikes');
+% for i = 1:1:25
+%     subplot(5,5,i);
+%     X = H_motorbikes{i};
+%     histogram(X, 'Normalization', 'count') %// plot normalized histogram
+%     
+% end

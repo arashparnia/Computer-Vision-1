@@ -6,7 +6,8 @@ clearvars;
 % RandStream.setGlobalStream(s);
 
 
-% part1
+% part1(400);
+
 
 %% loading H 
 
@@ -51,8 +52,8 @@ training_label_vector = training_label_vector';
 training_instance_matrix = training_instance_matrix';
 
 
-
-model = train(training_label_vector, sparse(training_instance_matrix),'-s 7');
+% 5 -- L1-regularized L2-loss support vector classification\n"
+model = train(training_label_vector, sparse(training_instance_matrix),'-s 5');
 
 
 
@@ -82,6 +83,6 @@ test_instance_matrix = test_instance_matrix';
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model);
 
-test_label_vector - predict_label
+accuracy
 
 

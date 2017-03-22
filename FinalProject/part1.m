@@ -1,4 +1,4 @@
-function part1
+function part1(vocabulary_size)
 
 
 %% reading training files
@@ -18,14 +18,24 @@ fclose(fileID);
 
 
 %% k-means clustering with vocabulary_size
-vocabulary_size = 1200 ; 
+% vocabulary_size = 400 ; 
 [centers] = kmeans(single(d), vocabulary_size); 
 
 
 %% histogram for each training image using HE fucntion
-H_test = image_path_to_hist('Caltech4/ImageSets/test.txt',centers,vocabulary_size);
+H_airplanes = image_path_to_hist('Caltech4/ImageSets/train_airplanes.txt',centers,vocabulary_size);
+save('H_airplanes','H_airplanes');
 
-  % saving H to file  
+H_motorbikes = image_path_to_hist('Caltech4/ImageSets/train_motorbikes.txt',centers,vocabulary_size);
+save('H_motorbikes','H_motorbikes');
+
+H_faces = image_path_to_hist('Caltech4/ImageSets/train_faces.txt',centers,vocabulary_size);
+save('H_faces','H_faces');
+
+H_cars = image_path_to_hist('Caltech4/ImageSets/train_cars.txt',centers,vocabulary_size);
+save('H_cars','H_cars');
+
+H_test = image_path_to_hist('Caltech4/ImageSets/test.txt',centers,vocabulary_size);
 save('H_test','H_test');
 
 

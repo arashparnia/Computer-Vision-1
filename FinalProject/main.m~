@@ -18,37 +18,65 @@ clearvars;
 %     histogram(X, 'Normalization', 'count') %// plot normalized histogram
 %     
 % end
+% 
+% load('H_airplanes');
+% load('H_motorbikes');
+% load('H_faces');
+% load('H_cars');
+% 
+% training_airplanes = cell2mat(H_airplanes);
+% training_motorbikes = cell2mat(H_motorbikes);
+% training_faces = cell2mat(H_faces);
+% training_cars = cell2mat(H_cars);
+% 
+% [~,s] = size(training_airplanes); 
+% training_label_vector = ones(1,s);
+% 
+% [~,s] = size(training_motorbikes) ;
+% training_label_vector = cat(2,training_label_vector , ones(1,s)*2 ) ;
+% 
+% [~,s] = size(training_faces) ;
+% training_label_vector = cat(2,training_label_vector , ones(1,s)*3 ) ;
+% 
+% [~,s] = size(training_cars) ;
+% training_label_vector = cat(2,training_label_vector , ones(1,s)*4 ) ;
+% 
+% training_instance_matrix = training_airplanes;
+% training_instance_matrix = cat(2,training_instance_matrix,training_motorbikes);
+% training_instance_matrix = cat(2,training_instance_matrix,training_faces);
+% training_instance_matrix = cat(2,training_instance_matrix,training_cars);
+% 
+% training_label_vector = training_label_vector';
+% 
+% training_instance_matrix = training_instance_matrix';
+% 
+% 
+% 
+% model = train(training_label_vector, sparse(training_instance_matrix));
 
-load('H_airplanes');
-load('H_motorbikes');
-load('H_faces');
-load('H_cars');
-
-training_airplanes = cell2mat(H_airplanes);
-training_motorbikes = cell2mat(H_motorbikes);
-training_faces = cell2mat(H_faces);
-training_cars = cell2mat(H_cars);
-
-[~,s] = size(training_airplanes); 
-training_label_vector = ones(1,s);
 
 
-[~,s] = size(training_motorbikes) ;
-training_label_vector = cat(2,training_label_vector , ones(1,s)*2 ) ;
+% save('model','model');
 
-[~,s] = size(training_faces) ;
-training_label_vector = cat(2,training_label_vector , ones(1,s)*3 ) ;
+load('model')
+model
+load('H_test');
 
-[~,s] = size(training_cars) ;
-training_label_vector = cat(2,training_label_vector , ones(1,s)*4 ) ;
 
-training_instance_matrix = training_airplanes;
-training_instance_matrix = cat(2,training_instance_matrix,training_motorbikes);
-training_instance_matrix = cat(2,training_instance_matrix,training_faces);
-training_instance_matrix = cat(2,training_instance_matrix,training_cars);
+test_mat = cell2mat(H_test);
 
-size
+[~,s] = size(test_mat); 
+test_label_vector = ones(1,s);
 
-% training_label_vector = [1 ; 1 ; -1 ; -1];
-% training_instance_matrix = [1 2 3 ; 3 4 5 ; 5 6 7; 7 8 9];
-% model = svmtrain(training_label_vector, training_instance_matrix, '-t 0');
+test_instance_matrix = test_mat;
+
+training_label_vector = training_label_vector';
+
+training_instance_matrix = training_instance_matrix';
+
+% 
+
+[predict_label, accuracy, prob_estimates] = predict(heart_scale_label, heart_scale_inst, model, '-b 1');
+
+
+

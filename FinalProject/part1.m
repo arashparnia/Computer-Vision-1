@@ -23,10 +23,10 @@ vocabulary_size = 1200 ;
 
 
 %% histogram for each training image using HE fucntion
-H_faces = image_path_to_hist('Caltech4/ImageSets/train_faces.txt',centers,vocabulary_size);
+H_test = image_path_to_hist('Caltech4/ImageSets/test.txt',centers,vocabulary_size);
 
   % saving H to file  
-save('H_faces','H_faces');
+save('H_test','H_test');
 
 
 

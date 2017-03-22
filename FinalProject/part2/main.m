@@ -1,5 +1,5 @@
 %% main function 
-
+run ('matconvnet-1.0-beta23/matlab/vl_setupnn');
 
 %% fine-tune cnn
 

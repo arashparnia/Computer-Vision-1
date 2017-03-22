@@ -7,4 +7,8 @@ clearvars;
 
 
 % part1(400);
+% part1_from_file;
+
+
+
 

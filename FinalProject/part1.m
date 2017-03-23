@@ -1,5 +1,5 @@
-function part1(vocabulary_size)
-
+function part1()
+vocabulary_size = 400;
 
 %% reading training files
 fileID = fopen('Caltech4/ImageSets/train_vocab.txt','r');

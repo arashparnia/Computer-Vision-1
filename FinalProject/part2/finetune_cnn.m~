@@ -87,16 +87,14 @@ splits = {'train', 'test'};
 fileID = fopen('Caltech4/ImageSets/train.txt','r');
 A = textscan(fileID,'%s');
 A = A{1};
-[num_images,~]= (size(A));
+[num_images= (size(A))
 
 length_of_images = length(A);
 image  = imread(strcat('Caltech4/ImageData/',strcat(A{1},'.jpg')));
-[image_height, image_width, num_channels] = size(image);
+[image_height, image_width, num_channels] = size(image)
 data = zeros(image_height, image_width, num_channels,num_images);
-data(:,:,:,1) = image;
 for i = 2 : length_of_images
      image  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
-     data(:,:,:,i) = image;
 end
 fclose(fileID);
 %%

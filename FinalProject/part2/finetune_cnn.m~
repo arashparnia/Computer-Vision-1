@@ -84,19 +84,36 @@ splits = {'train', 'test'};
 
 %% TODO: Implement your loop here, to create the data structure described in the assignment
 
-fileID = fopen('Caltech4/ImageSets/train.txt','r');
-A = textscan(fileID,'%s');
-A = A{1};
-[num_images= (size(A))
+fileID_train = fopen('Caltech4/ImageSets/train.txt','r');
+A_train = textscan(fileID_train,'%s');
+fileID_test = fopen('Caltech4/ImageSets/test.txt','r');
+A_test = textscan(fileID_test,'%s');
 
-length_of_images = length(A);
-image  = imread(strcat('Caltech4/ImageData/',strcat(A{1},'.jpg')));
-[image_height, image_width, num_channels] = size(image)
+A_train = A_train{1};
+A_test = A_test{1};
+[num_images_train,~]= (size(A_train));
+[num_images_test,~]= (size(A_test));
+
+num_images = num_images_train + num_images_test;
+image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{1},'.jpg')));
+image_height = 32;
+image_width = 32;
+num_channels = 3;
 data = zeros(image_height, image_width, num_channels,num_images);
-for i = 2 : length_of_images
-     image  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
+image = imresize(image,[image_height image_width]);
+data(:,:,:,1) = image;
+for i = 2 : num_images_train
+     image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{i},'.jpg')));
+     image = imresize(image,[image_height image_width]);   
+     if size(image,3)==3 % if rgb
+        data(:,:,:,i) = image;
+     else
+        data(:,:,1,i) = image(:,:,1);
+        data(:,:,2,i) = image(:,:,1);
+        data(:,:,3,i) = image(:,:,1);
+     end
 end
-fclose(fileID);
+fclos
 %%
 % subtract mean
 dataMean = mean(data(:, :, :, sets == 1), 4);

@@ -73,9 +73,10 @@ test_label_vector = test_label_vector';
 test_instance_matrix = test_instance_matrix';
 
 
-[predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model);
+[predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model)
 
-accuracy
+
+
 
 
 

@@ -2,7 +2,9 @@ function publish_to_html(motorbikes,airplanes,cars,faces)
 fileID = fopen('Caltech4/ImageSets/test.txt','r');
 A = textscan(fileID,'%s');
 A = A{1};
-for i = 1 :40
+s=0;
+for i = 1 :10
+    s=s+1;
     i1 = motorbikes(i);
     i2 = airplanes(i);
     i3 = cars(i);
@@ -12,10 +14,10 @@ for i = 1 :40
     image3  = imread(strcat('Caltech4/ImageData/',strcat(A{i3},'.jpg')));
     image4  = imread(strcat('Caltech4/ImageData/',strcat(A{i4},'.jpg')));
     
-    subplot(4,10,i),imshow(image1);
-    subplot(4,10,i),imshow(image2);
-    subplot(4,10,i),imshow(image3);
-    subplot(4,10,i),imshow(image4);
+    subplot(10,4,s),imshow(image1);s=s+1;
+    subplot(10,4,s),imshow(image2);s=s+1;
+    subplot(10,4,s),imshow(image3);s=s+1;
+    subplot(10,4,s),imshow(image4);
 end
 fclose(fileID);
 

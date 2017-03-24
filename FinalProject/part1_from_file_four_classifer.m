@@ -100,21 +100,21 @@ test_instance_matrix = test_instance_matrix';
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_motorbikes);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-sortidx(1:10)
+motorbikes = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_airplanes);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-sortidx(1:10)
+airplanes = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_faces);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-sortidx(1:10)
+faces = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_cars);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-sortidx(1:10)
+cars = sortidx(1:10);
 
-
+publish_to_html(motorbikes,airplanes,cars,faces);
 
 
 

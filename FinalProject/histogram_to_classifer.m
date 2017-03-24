@@ -1,4 +1,4 @@
-function part1_from_file_four_classifer
+function histogram_to_classifer()
 
 
 %% loading H 
@@ -72,14 +72,14 @@ training_label_vector_airplanes =training_label_vector_airplanes';
 training_label_vector_faces = training_label_vector_faces';
 training_label_vector_cars = training_label_vector_cars';
 
-% best_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), '-C -s 0');
-% model_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_motorbikes(1))); % use the same solver: -s 0 
-% best_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), '-C -s 0');
-% model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_airplanes(1))); % use the same solver: -s 0 
-% best_faces = train(training_label_vector_faces, sparse(training_instance_matrix), '-C -s 0');
-% model_faces = train(training_label_vector_faces, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_faces(1))); % use the same solver: -s 0 
-% best_cars = train(training_label_vector_cars, sparse(training_instance_matrix), '-C -s 0');
-% model_cars = train(training_label_vector_cars, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_cars(1))); % use the same solver: -s 0 
+best_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), '-C -s 0');
+model_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_motorbikes(1))); % use the same solver: -s 0 
+best_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), '-C -s 0');
+model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_airplanes(1))); % use the same solver: -s 0 
+best_faces = train(training_label_vector_faces, sparse(training_instance_matrix), '-C -s 0');
+model_faces = train(training_label_vector_faces, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_faces(1))); % use the same solver: -s 0 
+best_cars = train(training_label_vector_cars, sparse(training_instance_matrix), '-C -s 0');
+model_cars = train(training_label_vector_cars, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_cars(1))); % use the same solver: -s 0 
 
 
 
@@ -95,10 +95,10 @@ training_label_vector_cars = training_label_vector_cars';
 % model_faces = train(training_label_vector_faces, sparse(training_instance_matrix),'-s 5');
 % model_cars = train(training_label_vector_cars, sparse(training_instance_matrix),'-s 5');
 
-model_motorbikes  = train(training_label_vector_motorbikes, sparse(training_instance_matrix));
-model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix));
-model_faces = train(training_label_vector_faces, sparse(training_instance_matrix));
-model_cars = train(training_label_vector_cars, sparse(training_instance_matrix));
+% model_motorbikes  = train(training_label_vector_motorbikes, sparse(training_instance_matrix));
+% model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix));
+% model_faces = train(training_label_vector_faces, sparse(training_instance_matrix));
+% model_cars = train(training_label_vector_cars, sparse(training_instance_matrix));
 
 
 % % save('model','model');
@@ -124,19 +124,19 @@ test_instance_matrix = test_instance_matrix';
 
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_motorbikes);
-[sortvals, sortidx] = sort(prob_estimates,'ascend');
+[sortvals, sortidx] = sort(prob_estimates);
 motorbikes = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_airplanes);
-[sortvals, sortidx] = sort(prob_estimates,'ascend');
+[sortvals, sortidx] = sort(prob_estimates);
 airplanes = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_faces);
-[sortvals, sortidx] = sort(prob_estimates,'ascend');
+[sortvals, sortidx] = sort(prob_estimates);
 faces = sortidx(1:10);
 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_cars);
-[sortvals, sortidx] = sort(prob_estimates,'ascend');
+[sortvals, sortidx] = sort(prob_estimates);
 cars = sortidx(1:10);
 
 publish_to_html(motorbikes,airplanes,cars,faces);

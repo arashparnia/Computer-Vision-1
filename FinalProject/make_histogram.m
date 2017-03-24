@@ -1,6 +1,6 @@
-function part1()
+function make_histogram()
 % run('vlfeat-0.9.20/toolbox/vl_setup.m')
-vocabulary_size = 400;
+vocabulary_size = 1200;
 
 %% reading training files
 fileID = fopen('Caltech4/ImageSets/train_vocab.txt','r');
@@ -18,7 +18,6 @@ end
 fclose(fileID);
 
 %% k-means clustering with vocabulary_size
-% vocabulary_size = 400 ; 
 [centers] = kmeans(single(d), vocabulary_size); 
 
 
@@ -41,7 +40,6 @@ save('H_test','H_test');
 
 
 
-% train(training_label_vector, training_instance_matrix, 'liblinear_options', 'col');
-
+histogram_to_classifer();
 
 end

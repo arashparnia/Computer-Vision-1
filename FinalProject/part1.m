@@ -1,4 +1,5 @@
 function part1()
+% run('vlfeat-0.9.20/toolbox/vl_setup.m')
 vocabulary_size = 400;
 
 %% reading training files

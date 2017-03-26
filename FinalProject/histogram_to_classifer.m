@@ -72,14 +72,14 @@ training_label_vector_airplanes =training_label_vector_airplanes';
 training_label_vector_faces = training_label_vector_faces';
 training_label_vector_cars = training_label_vector_cars';
 
-best_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), '-C -s 0');
-model_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_motorbikes(1))); % use the same solver: -s 0 
-best_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), '-C -s 0');
-model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_airplanes(1))); % use the same solver: -s 0 
-best_faces = train(training_label_vector_faces, sparse(training_instance_matrix), '-C -s 0');
-model_faces = train(training_label_vector_faces, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_faces(1))); % use the same solver: -s 0 
-best_cars = train(training_label_vector_cars, sparse(training_instance_matrix), '-C -s 0');
-model_cars = train(training_label_vector_cars, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_cars(1))); % use the same solver: -s 0 
+% best_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), '-C -s 0');
+% model_motorbikes = train(training_label_vector_motorbikes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_motorbikes(1))); % use the same solver: -s 0 
+% best_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), '-C -s 0');
+% model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_airplanes(1))); % use the same solver: -s 0 
+% best_faces = train(training_label_vector_faces, sparse(training_instance_matrix), '-C -s 0');
+% model_faces = train(training_label_vector_faces, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_faces(1))); % use the same solver: -s 0 
+% best_cars = train(training_label_vector_cars, sparse(training_instance_matrix), '-C -s 0');
+% model_cars = train(training_label_vector_cars, sparse(training_instance_matrix), sprintf('-c %f -s 0', best_cars(1))); % use the same solver: -s 0 
 
 
 
@@ -95,10 +95,10 @@ model_cars = train(training_label_vector_cars, sparse(training_instance_matrix),
 % model_faces = train(training_label_vector_faces, sparse(training_instance_matrix),'-s 5');
 % model_cars = train(training_label_vector_cars, sparse(training_instance_matrix),'-s 5');
 
-% model_motorbikes  = train(training_label_vector_motorbikes, sparse(training_instance_matrix));
-% model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix));
-% model_faces = train(training_label_vector_faces, sparse(training_instance_matrix));
-% model_cars = train(training_label_vector_cars, sparse(training_instance_matrix));
+model_motorbikes  = train(training_label_vector_motorbikes, sparse(training_instance_matrix));
+model_airplanes = train(training_label_vector_airplanes, sparse(training_instance_matrix));
+model_faces = train(training_label_vector_faces, sparse(training_instance_matrix));
+model_cars = train(training_label_vector_cars, sparse(training_instance_matrix));
 
 
 % % save('model','model');

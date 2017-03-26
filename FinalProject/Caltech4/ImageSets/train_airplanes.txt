@@ -1,4 +1,3 @@
-airplanes_train/img100
 airplanes_train/img101
 airplanes_train/img102
 airplanes_train/img103

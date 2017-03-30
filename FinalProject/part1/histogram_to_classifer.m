@@ -1,4 +1,4 @@
-function histogram_to_classifer(vocabulary_size)
+function histogram_to_classifer(vocabulary_size,descriptor_type)
 
 s = 100;
 
@@ -13,11 +13,14 @@ s = 100;
 %     
 % end
 % 
-
-load('H_airplanes');
-load('H_motorbikes');
-load('H_faces');
-load('H_cars');
+file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,vocabulary_size));
+load(file_name,'H_airplanes');
+file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,vocabulary_size));
+load(file_name,'H_motorbikes');
+file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,vocabulary_size));
+load(file_name,'H_faces');
+file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,vocabulary_size));
+load(file_name,'H_cars');
 
 training_airplanes = zeros(s,vocabulary_size);
 for i = 1 : s

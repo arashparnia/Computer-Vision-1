@@ -28,7 +28,7 @@ function [f,d] = get_descriptor(image, type, step_size)
 
     %% Opponent SIFT
     if strcmp(type,'opponent')
-        [f,d] = vl_phow(image,'step', step_size,'color','opponent');
+        [f,d] = vl_phow(single(image),'step', step_size,'color','opponent');
     end
     %% Dense SIFT
     if strcmp(type,'dense')

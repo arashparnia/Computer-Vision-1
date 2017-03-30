@@ -1,4 +1,4 @@
-function H= image_path_to_hist(image_txt,centers,vocabulary_size,descriptor_type,step_size)
+function H= image_path_to_hist(image_txt,centers,vocabulary_size)
 
 %% histogram for each training image using HE fucntion
 fileID = fopen(image_txt,'r');
@@ -10,7 +10,8 @@ D = cell(1,length_of_images);
 for i = 1 : length_of_images
      images{i}  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
      image = images{i};
-     [~,d_temp] = get_descriptor(image,descriptor_type,step_size);
+      % Types = 'dense', 'keypoints', 'RGBsift', 'rgbsift', 'Oppsift'
+     [~,d_temp] = get_descriptor(image,descriptor_type,5);
      D{i} = d_temp;
 end
 fclose(fileID);

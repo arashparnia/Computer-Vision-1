@@ -1,6 +1,5 @@
-function histogram_to_classifer()
+function histogram_to_classifer(vocabulary_size)
 
-vocabulary_size = 400;
 s = 100;
 
 %% loading H 

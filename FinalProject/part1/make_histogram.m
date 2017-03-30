@@ -7,21 +7,25 @@ A = textscan(fileID,'%s');
 A = A{1};
 length_of_images = length(A);
 images = {length_of_images};
-d =[];
+D =[];
 for i = 1 : length_of_images
      images{i}  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
      image = images{i};
-     
-     [~,d_temp] = get_descriptor(image,descriptor_type,5);
-     d = cat(2,d,d_temp);
+     d_temp = get_descriptor(image,descriptor_type,step_size);
+     D = cat(2,D,d_temp);
 end
 fclose(fileID);
 disp('vocabulary calculated');
 
 %% k-means clustering with vocabulary_size
-[centers] = kmeans(single(d), vocabulary_size); 
+[centers] = kmeans(single(D), vocabulary_size); 
 centers = centers';
-disp('Kmeans calculated');
+disp('Kmeans centers calculated');
+
+% file_name = strcat('part1/saved/centers_',vocabulary_size);
+% save(file_name,'centers');
+% 
+% load(file_name,'centers');
 
 
 %% histogram for each training image using HE fucntion

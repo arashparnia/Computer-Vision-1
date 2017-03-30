@@ -5,31 +5,34 @@
 % vocabulary_size = 400;
 % descriptor_type = 'dense';
 % descriptor_step_size = 5;
-%
+
 % vocabulary_size = 800;
 % descriptor_type = 'dense';
 % sescriptor_step_size = 5;
 % 
-%
 % vocabulary_size = 400;
 % descriptor_type = 'rgbsift';
 % 
+% 
 % vocabulary_size = 800;
 % descriptor_type = 'rgbsift';
-%
 %
 % vocabulary_size = 400;
 % descriptor_type = 'RGBsift';
 % 
+% 
 % vocabulary_size = 800;
 % descriptor_type = 'RGBsift';
-%
-%
+% run
+
 % vocabulary_size = 400;
 % descriptor_type = 'opponent';
+% run
+% 
 % 
 % vocabulary_size = 800;
 % descriptor_type = 'opponent';
+% run
 
 run
 

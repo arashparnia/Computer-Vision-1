@@ -1,5 +1,5 @@
 function make_histogram()
-run('vlfeat-0.9.20/toolbox/vl_setup.m')
+% run('vlfeat-0.9.20/toolbox/vl_setup.m')
 vocabulary_size = 400;
 
 %% reading training files
@@ -18,15 +18,14 @@ end
 fclose(fileID);
 
 %% k-means clustering with vocabulary_size
-size(d)
-
 [centers] = kmeans(single(d), vocabulary_size); 
+centers = centers';
 disp('Kmeans calculated');
 
 
 %% histogram for each training image using HE fucntion
 H_airplanes = image_path_to_hist('Caltech4/ImageSets/train_airplanes.txt',centers,vocabulary_size);
-save('H_airplanes','H_airplanesH_airplanes');
+save('H_airplanes','H_airplanes');
 disp('H_airplanes calculated');
 
 H_motorbikes = image_path_to_hist('Caltech4/ImageSets/train_motorbikes.txt',centers,vocabulary_size);
@@ -52,6 +51,6 @@ disp('H_test calculated');
 
 
 
-histogram_to_classifer();
+histogram_to_classifer(vocabulary_size);
 
 end

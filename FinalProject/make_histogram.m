@@ -12,7 +12,8 @@ d =[];
 for i = 1 : length_of_images
      images{i}  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
      image = images{i};
-     d_temp = get_descriptor(image);
+     % Types = 'dense', 'keypoints', 'RGBsift', 'rgbsift', 'Oppsift'
+     [~,d_temp] = get_descriptor(image,'dense',5);
      d = cat(2,d,d_temp);
 end
 fclose(fileID);

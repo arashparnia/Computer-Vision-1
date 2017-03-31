@@ -2,7 +2,9 @@ function [net, info, expdir] = finetune_cnn(varargin)
 
 %% Define options
 run(fullfile(fileparts(mfilename('fullpath')), ...
-  '..','..', 'matconvnet-1.0-beta23','matlab', 'vl_setupnn.m')) ;
+  '..', 'matconvnet-1.0-beta23','matlab', 'vl_setupnn.m')) ;
+
+
 
 opts.modelType = 'lenet' ;
 [opts, varargin] = vl_argparse(opts, varargin) ;
@@ -20,7 +22,8 @@ opts.train = struct() ;
 opts = vl_argparse(opts, varargin) ;
 if ~isfield(opts.train, 'gpus'), opts.train.gpus = []; end;
 
-opts.train.gpus = [1];
+% turning off gpu support 
+opts.train.gpus = [];
 
 
 
@@ -75,6 +78,12 @@ if rand > 0.5, images=fliplr(images) ; end
 
 end
 
+
+
+
+
+
+
 % -------------------------------------------------------------------------
 function imdb = getCaltechIMDB()
 % -------------------------------------------------------------------------
@@ -84,38 +93,100 @@ splits = {'train', 'test'};
 
 %% TODO: Implement your loop here, to create the data structure described in the assignment
 
-fileID_train = fopen('Caltech4/ImageSets/train.txt','r');
-A_train = textscan(fileID_train,'%s');
-fileID_test = fopen('Caltech4/ImageSets/test.txt','r');
-A_test = textscan(fileID_test,'%s');
-
-A_train = A_train{1};
-A_test = A_test{1};
-[num_images_train,~]= (size(A_train));
-[num_images_test,~]= (size(A_test));
-
-num_images = num_images_train + num_images_test;
-image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{1},'.jpg')));
-image_height = 32;
-image_width = 32;
-num_channels = 3;
-data = zeros(image_height, image_width, num_channels,num_images);
-image = imresize(image,[image_height image_width]);
-data(:,:,:,1) = image;
-for i = 2 : num_images_train
-     image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{i},'.jpg')));
-     image = imresize(image,[image_height image_width]);   
-     if size(image,3)==3 % if rgb
-        data(:,:,:,i) = image;
-     else
-        data(:,:,1,i) = image(:,:,1);
-        data(:,:,2,i) = image(:,:,1);
-        data(:,:,3,i) = image(:,:,1);
-     end
+n = 0;
+for s = 1:length(splits)
+    if strcmp(splits(s),splits(1))
+        nr_images = 400;
+    else
+        nr_images = 50;
+    end
+    for i = 1:length(classes)
+        filename = char(strcat('Caltech4/ImageData/', classes(i),'_', splits(s), '/'));
+        for j = 1:nr_images
+            imagename = strcat(filename,'img',num2str(j,'%.3d'),'.jpg');
+            I = imread(imagename);
+            if size(I,3) > 1
+                n = n + 1;
+            end
+        end
+    end
 end
-fclose(fileID_train);
-fclose(fileID_test);
 
+data = zeros(32,32,3,n);
+labels = zeros(1,n);
+sets = zeros(1,n);
+ind = 1;
+
+for s = 1:length(splits)
+    if strcmp(splits(s),splits(1))
+        nr_images = 100;
+    else
+        nr_images = 20;
+    end
+    for i = 1:length(classes)
+        filename = char(strcat('Caltech4/ImageData/', classes(i),'_', splits(s), '/'));
+        for j = 1:nr_images % temporary
+            imagename = strcat(filename,'img',num2str(j,'%.3d'),'.jpg');
+            I = imread(imagename);
+            if size(I,3) > 1
+                I = single(I);
+                I = imresize(I, [32 32]);
+                data(:,:,:,ind) = I;
+                if strcmp(splits(s),splits(1))
+                    sets(ind) = 1;
+                else
+                    sets(ind) = 2;
+                end
+                
+                if strcmp(classes(i),classes(1))
+                    labels(ind) = 1;
+                elseif strcmp(classes(i),classes(2))
+                    labels(ind) = 2;
+                elseif strcmp(classes(i),classes(3))
+                    labels(ind) = 3;
+                elseif strcmp(classes(i),classes(4))
+                    labels(ind) = 4;
+                end
+                
+                ind = ind + 1;
+            end
+        end
+    end
+end
+data = single(data);
+
+% fileID_train = fopen('Caltech4/ImageSets/train.txt','r');
+% A_train = textscan(fileID_train,'%s');
+% fileID_test = fopen('Caltech4/ImageSets/test.txt','r');
+% A_test = textscan(fileID_test,'%s');
+% 
+% A_train = A_train{1};
+% A_test = A_test{1};
+% [num_images_train,~]= (size(A_train));
+% [num_images_test,~]= (size(A_test));
+% 
+% num_images = num_images_train + num_images_test;
+% image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{1},'.jpg')));
+% image_height = 32;
+% image_width = 32;
+% num_channels = 3;
+% data = zeros(image_height, image_width, num_channels,num_images);
+% image = imresize(image,[image_height image_width]);
+% data(:,:,:,1) = image;
+% for i = 2 : num_images_train
+%      image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{i},'.jpg')));
+%      image = imresize(image,[image_height image_width]);   
+%      if size(image,3)==3 % if rgb
+%         data(:,:,:,i) = image;
+%      else
+%         data(:,:,1,i) = image(:,:,1);
+%         data(:,:,2,i) = image(:,:,1);
+%         data(:,:,3,i) = image(:,:,1);
+%      end
+% end
+% fclose(fileID_train);
+% fclose(fileID_test);
+% 
 %%
 % subtract mean
 dataMean = mean(data(:, :, :, sets == 1), 4);

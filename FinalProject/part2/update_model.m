@@ -89,7 +89,7 @@ net.layers{end+1} = struct('type', 'softmaxloss') ;
 % Fill in default values
 net = vl_simplenn_tidy(net) ;
 
-oldnet = load('./FinalProject/part2/data/pre_trained_model.mat'); oldnet = oldnet.net;
+oldnet = load('./data/pre_trained_model.mat'); oldnet = oldnet.net;
 net = update_weights(oldnet, net);
 end
 

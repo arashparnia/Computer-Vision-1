@@ -1,6 +1,7 @@
 function [net, info, expdir] = finetune_cnn(varargin)
 
 %% Define options
+warning('off','all')
 run(fullfile(fileparts(mfilename('fullpath')), ...
   '..', 'matconvnet-1.0-beta23','matlab', 'vl_setupnn.m')) ;
 

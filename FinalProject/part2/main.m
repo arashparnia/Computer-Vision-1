@@ -1,6 +1,6 @@
 %% main function 
 clc;
-% cnn  = load('part2/data/pre_trained_model.mat');
+cnn  = load('part2/data/pre_trained_model.mat');
 %% section 3.1
 %     vl_simplenn_display(cnn.net);
     % 1. Do you observe any pattern in the architecture of the network? If so, describe it in your own words.
@@ -8,7 +8,7 @@ clc;
 
 %% fine-tune cnn
 
-% [net, info, expdir] = finetune_cnn();
+[net, info, expdir] = finetune_cnn();
 
 %% extract features and train svm
 

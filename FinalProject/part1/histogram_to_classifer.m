@@ -13,13 +13,13 @@ s = 100;
 %     
 % end
 % 
-file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,int2str(vocabulary_size)));
+file_name = strcat('saved/H_airplanes_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_airplanes');
-file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,int2str(vocabulary_size)));
+file_name = strcat('saved/H_motorbikes_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_motorbikes');
-file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,int2str(vocabulary_size)));
+file_name = strcat('saved/H_faces_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_faces');
-file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,int2str(vocabulary_size)));
+file_name = strcat('saved/H_cars_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_cars');
 
 training_airplanes = zeros(s,vocabulary_size);
@@ -124,7 +124,8 @@ model_cars = train(training_label_vector_cars, sparse(training_instance_matrix_c
 % load('model')
 % model
 %% make predict
-load('H_test');
+file_name = strcat('saved/H_test_',strcat( descriptor_type,int2str(vocabulary_size)));
+load(file_name,'H_test');
 
 test_instance_matrix = zeros(200,vocabulary_size);
 for i = 1 : 200
@@ -139,26 +140,26 @@ test_label_vector = zeros(200,1);
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_motorbikes );
 % show_all_images(predict_label);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-motorbikes = sortidx(1:10);
+motorbikes = sortidx;
 % 
 % 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_airplanes);
 % show_all_images(predict_label);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-airplanes = sortidx(1:10);
+airplanes = sortidx;
 % 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_faces);
 % show_all_images(predict_label);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-faces = sortidx(1:10);
+faces = sortidx;
 % 
 [predict_label, accuracy, prob_estimates] = predict(test_label_vector, sparse(test_instance_matrix), model_cars);
 % show_all_images(predict_label);
 [sortvals, sortidx] = sort(prob_estimates,'descend');
-cars = sortidx(1:10);
+cars = sortidx;
 % 
 % %% visualize
-publish_to_html(motorbikes,airplanes,cars,faces);
+publish_to_html(motorbikes,airplanes,cars,faces,vocabulary_size,descriptor_type);
 
 
 

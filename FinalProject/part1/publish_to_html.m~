@@ -37,13 +37,13 @@ stuff = '<h1>Settings</h1>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<table>';
 fprintf(fileID2,'%s \n',stuff);
-stuff = '<tr><th>SIFT step size</th><td>5 px</td></tr>';
+stuff = '<tr><th>SIFT step size</th><td>XXX px</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
-stuff = '<tr><th>SIFT block sizes</th><td>5 pixels</td></tr>';
+stuff = '<tr><th>SIFT block sizes</th><td>XXX pixels</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = strcat('<tr><th>SIFT method</th><td>',descriptor_type,'</td></tr>');
 fprintf(fileID2,'%s \n',stuff);
-stuff = strcat('<tr><th>Vocabulary size</th><td>',int2str(vocabulary_size),' words</td></tr>');
+stuff = strcat'<tr><th>Vocabulary size</th><td>',int2str(vocabulary_size),' words</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<tr><th>Vocabulary fraction</th><td>XXX</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
@@ -85,13 +85,13 @@ fprintf(fileID2,'%s \n',stuff);
 
 for i = 1 :length(motorbikes)
     
-    image1_file = strcat('../../Caltech4/ImageData/',strcat(A{motorbikes(i)},'.jpg'));
+    image1_file = strcat('Caltech4/ImageData/',strcat(A{motorbikes(i)},'.jpg'));
 %     image1  = imread(image1_file);
-    image2_file = strcat('../../Caltech4/ImageData/',strcat(A{airplanes(i)},'.jpg'));
+    image2_file = strcat('Caltech4/ImageData/',strcat(A{airplanes(i)},'.jpg'));
 %     image2  = imread(image2_file);
-    image3_file = strcat('../../Caltech4/ImageData/',strcat(A{cars(i)},'.jpg'));
+    image3_file = strcat('Caltech4/ImageData/',strcat(A{cars(i)},'.jpg'));
 %     image3  = imread(image3_file);
-    image4_file = strcat('../../Caltech4/ImageData/',strcat(A{faces(i)},'.jpg'));
+    image4_file = strcat('Caltech4/ImageData/',strcat(A{faces(i)},'.jpg'));
 %     image4  = imread(image4_file);a
     
 %     subplot(10,4,s),imshow(image1);s=s+1;title(image1_file);

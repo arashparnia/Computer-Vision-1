@@ -1,7 +1,27 @@
 
 function d = get_descriptor(image, descriptor_type, step_size)
-     % Types = 'dense','RGB_sift', 'rgb_sift', 'Oppsift'
-
+     % Types = 'keypoints','dense','RGB_sift', 'rgb_sift', 'Oppsift'
+    %% keypoint SIFT
+    if strcmp(descriptor_type,'keypoints')
+        if size(image,3) ==3 
+            image = rgb2gray(image);
+        end
+        [f, ~] = vl_sift(image);
+        if size(image,3) == 3
+            r = image(:,:,1);
+            g = image(:,:,2);
+            b = image(:,:,3);
+        else
+            r = image(:,:);
+            g = image(:,:);
+            b = image(:,:);
+        end
+        [~ , d1] = vl_sift(single(r), 'frames', f);
+        [~ , d2] = vl_sift(single(g), 'frames', f);
+        [~ , d3] = vl_sift(single(b), 'frames', f);
+        d = [d1';d2';d3'];
+        d = d';
+    end
     %% RGB SIFT
     if strcmp(descriptor_type,'RGB_sift')
         d= vl_phow(single(image),'step', step_size , 'color','rgb');
@@ -36,7 +56,6 @@ function d = get_descriptor(image, descriptor_type, step_size)
         d = d';
     end
 
-
     %% Opponent SIFT
     if strcmp(descriptor_type,'opponent')
         d = vl_phow(single(image),'step', step_size,'color','opponent');
@@ -49,9 +68,7 @@ function d = get_descriptor(image, descriptor_type, step_size)
             image = rgb2gray(image);
         end
         image = im2single(image);
-        
         image_smooth = vl_imsmooth(image, sqrt((b/m)^2 - .25));
-        
         [f, ~] = vl_dsift(image_smooth, 'step', step_size , 'size', b ) ;
         f(3,:) = b/m ;
         f(4,:) = 0 ;

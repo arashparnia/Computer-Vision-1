@@ -8,13 +8,14 @@ disp('part 1');
 % vocabulary_size = 400;
 % descriptor_type = 'dense';
 % descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% % make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
 % 
-% vocabulary_size = 800;
-% descriptor_type = 'dense';
-% sescriptor_step_size = 5;
+vocabulary_size = 800;
+descriptor_type = 'dense';
+sescriptor_step_size = 5;
 % make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-
+histogram_to_classifer(vocabulary_size,descriptor_type);
 
 % vocabulary_size = 400;
 % descriptor_type = 'rgb_sift';

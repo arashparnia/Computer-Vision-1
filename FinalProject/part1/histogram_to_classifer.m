@@ -13,13 +13,13 @@ s = 100;
 %     
 % end
 % 
-file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_airplanes');
-file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_motorbikes');
-file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_faces');
-file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,int2str(vocabulary_size)));
 load(file_name,'H_cars');
 
 training_airplanes = zeros(s,vocabulary_size);

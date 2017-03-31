@@ -30,30 +30,30 @@ disp('Kmeans centers calculated');
 
 %% histogram for each training image using HE fucntion
 H_airplanes = image_path_to_hist('Caltech4/ImageSets/train_airplanes.txt',centers,vocabulary_size,descriptor_type,step_size);
-file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_airplanes_',strcat( descriptor_type,int2str(vocabulary_size)));
 save(file_name,'H_airplanes');
 disp('H_airplanes calculated');
 
 H_motorbikes = image_path_to_hist('Caltech4/ImageSets/train_motorbikes.txt',centers,vocabulary_size,descriptor_type,step_size);
-file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_motorbikes_',strcat( descriptor_type,int2str(vocabulary_size)));
 save(file_name,'H_motorbikes');
 disp('H_motorbikes calculated');
 
 
 H_faces = image_path_to_hist('Caltech4/ImageSets/train_faces.txt',centers,vocabulary_size,descriptor_type,step_size);
-file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_faces_',strcat( descriptor_type,int2str(vocabulary_size)));
 save(file_name,'H_faces');
 disp('H_faces calculated');
 
 
 H_cars = image_path_to_hist('Caltech4/ImageSets/train_cars.txt',centers,vocabulary_size,descriptor_type,step_size);
-file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_cars_',strcat( descriptor_type,int2str(vocabulary_size)));
 save(file_name,'H_cars');
 disp('H_cars calculated');
 
 
 H_test = image_path_to_hist('Caltech4/ImageSets/test.txt',centers,vocabulary_size,descriptor_type,step_size);
-file_name = strcat('part1/saved/H_test_',strcat( descriptor_type,vocabulary_size));
+file_name = strcat('part1/saved/H_test_',strcat( descriptor_type,int2str(vocabulary_size)));
 save(file_name,'H_test');
 disp('H_test calculated');
 

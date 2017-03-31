@@ -10,7 +10,7 @@ D = cell(1,length_of_images);
 for i = 1 : length_of_images
      images{i}  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
      image = images{i};
-     [~, d_temp] = get_descriptor(image,descriptor_type,step_size);
+     d_temp = get_descriptor(image,descriptor_type,step_size);
      D{i} = d_temp;
 end
 fclose(fileID);

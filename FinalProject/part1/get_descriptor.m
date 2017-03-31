@@ -1,31 +1,41 @@
 
 function d = get_descriptor(image, descriptor_type, step_size)
-     % Types = 'dense','RGBsift', 'rgbsift', 'Oppsift'
+     % Types = 'dense','RGB_sift', 'rgb_sift', 'Oppsift'
 
     %% RGB SIFT
-    if strcmp(descriptor_type,'RGBSIFT')
-        d= vl_phow(image,'step', step_size , 'color','rgb');
+    if strcmp(descriptor_type,'RGB_sift')
+        d= vl_phow(single(image),'step', step_size , 'color','rgb');
     end
  
     %% rgb SIFT
-    if strcmp(descriptor_type,'rgbSIFT')
-        d = [];
-        f = [];
-        if size(image,3)==3 % if rgb
-            image_1D = single(rgb2gray(image));
-            %          [f_temp, ~] = vl_dsift(image_1D, 'size', 3) ;
-            [f_temp, ~] = vl_sift(image_1D);
-            %         [f_temp, ~] = vl_phow(image_1D) ;
-            size(f_temp);
-            for j = 1:3 %for each rbg dimentions
-                [~,d_temp] = vl_sift(single(image(:,:,j)),'frames',f_temp);
-                d = cat(2,d,d_temp);
-            end
+    if strcmp(descriptor_type,'rgb_sift')
+        if size(image,3) > 1
+            r = image(:,:,1);
+            g = image(:,:,2);
+            b = image(:,:,3);
         else %if not rgb
-            image_1D = single(image);
-            d = vl_sift(image_1D);
-        end 
+            r = image(:,:);
+            g = image(:,:);
+            b = image(:,:);
+        end
+        [h,w] = size(g);
+        sum = r + g + b;
+        r = double(r) ./ double(sum);
+        g = double(g) ./ double(sum);
+        b = double(b) ./ double(sum);
+        norm = zeros(h, w, 3 );
+        norm(:,:,1) = r;
+        norm(:,:,2) = g;
+        norm(:,:,3) = b;
+        norm = im2single(norm);
+       
+        [~ , d_1] = vl_sift(norm(:,:,1));
+        [~ , d_2] = vl_sift(norm(:,:,2));
+        [~ , d_3] = vl_sift(norm(:,:,3));
+        d = [d_1';d_2';d_3'];
+        d = d';
     end
+
 
     %% Opponent SIFT
     if strcmp(descriptor_type,'opponent')

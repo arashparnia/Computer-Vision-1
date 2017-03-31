@@ -115,6 +115,7 @@ for i = 2 : num_images_train
 end
 fclose(fileID_train);
 fclose(fileID_test);
+
 %%
 % subtract mean
 dataMean = mean(data(:, :, :, sets == 1), 4);

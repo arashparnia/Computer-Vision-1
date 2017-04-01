@@ -20,11 +20,13 @@ disp('vocabulary calculated');
 %% k-means clustering with vocabulary_size
 [centers] = kmeans(single(D), vocabulary_size); 
 centers = centers';
+size(centers)
 disp('Kmeans centers calculated');
 
-% file_name = strcat('part1/saved/centers_',vocabulary_size);
-% save(file_name,'centers');
-% 
+file_name = strcat('saved/centers_',strcat( descriptor_type,int2str(vocabulary_size)));
+save(file_name,'centers');
+
+% file_name = strcat('saved/centers_',strcat( descriptor_type,int2str(vocabulary_size)));
 % load(file_name,'centers');
 
 

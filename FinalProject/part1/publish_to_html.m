@@ -31,7 +31,7 @@ stuff = '  <body>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '';
 fprintf(fileID2,'%s \n',stuff);
-stuff = '<h2>stu1_name, stu2_name</h2>';
+stuff = '<h2>Arash, Annelore</h2>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<h1>Settings</h1>';
 fprintf(fileID2,'%s \n',stuff);
@@ -49,15 +49,11 @@ stuff = '<tr><th>Vocabulary fraction</th><td>XXX</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<tr><th>SVM training data</th><td>XXX positive, XXX negative per class</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
-stuff = '<tr><th>SVM kernel type</th><td>XXX</td></tr>';
+stuff = '<tr><th>SVM kernel type</th><td>Linear</td></tr>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '</table>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<h1>Prediction lists (MAP: 0.XXX)</h1>';
-fprintf(fileID2,'%s \n',stuff);
-stuff = '<h3><font color="red">Following are the ranking lists for the four categories. Please fill in your lists.</font></h3>';
-fprintf(fileID2,'%s \n',stuff);
-stuff = '<h3><font color="red">The length of each column should be 200 (containing all test images).</font></h3>';
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<table>';
 fprintf(fileID2,'%s \n',stuff);
@@ -77,21 +73,15 @@ fprintf(fileID2,'%s \n',stuff);
 
 
 
-
-
-
-
-
-
 for i = 1 :length(motorbikes)
     
-    image1_file = strcat('../../Caltech4/ImageData/',strcat(A{motorbikes(i)},'.jpg'));
+    image1_file = strcat('../../Caltech4/ImageData/',strcat(A{airplanes(i)},'.jpg'));
 %     image1  = imread(image1_file);
-    image2_file = strcat('../../Caltech4/ImageData/',strcat(A{airplanes(i)},'.jpg'));
+    image2_file = strcat('../../Caltech4/ImageData/',strcat(A{cars(i)},'.jpg'));
 %     image2  = imread(image2_file);
-    image3_file = strcat('../../Caltech4/ImageData/',strcat(A{cars(i)},'.jpg'));
+    image3_file = strcat('../../Caltech4/ImageData/',strcat(A{faces(i)},'.jpg'));
 %     image3  = imread(image3_file);
-    image4_file = strcat('../../Caltech4/ImageData/',strcat(A{faces(i)},'.jpg'));
+    image4_file = strcat('../../Caltech4/ImageData/',strcat(A{motorbikes(i)},'.jpg'));
 %     image4  = imread(image4_file);a
     
 %     subplot(10,4,s),imshow(image1);s=s+1;title(image1_file);

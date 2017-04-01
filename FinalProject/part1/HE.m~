@@ -1,7 +1,9 @@
 function H = HE(D,centers,vocabulary_size)
     H = ones(1,vocabulary_size);
-    [~,s] = size(D);
-    for i = 1: s
+    whos
+    class(D)
+    [a] = size(D)
+    for i = 1: length(D)
         [~,k] = min(pdist2(single(D(:,i)'),single(centers),'euclidean'));
 %         [~,k] = min(vl_alldist(D(i,:),centers));
         H(k)  = H(k) + 1;

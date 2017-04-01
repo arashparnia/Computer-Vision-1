@@ -10,15 +10,13 @@ D = cell(1,length_of_images);
 for i = 1 : length_of_images
      images{i}  = imread(strcat('Caltech4/ImageData/',strcat(A{i},'.jpg')));
      image = images{i};
-     d_temp = get_descriptor(image,descriptor_type,step_size);
-     D{i} = d_temp;
+     D{i} = get_descriptor(image,descriptor_type,step_size);
 end
 fclose(fileID);
-    
+
     H = cell(1,length_of_images);
 for i = 1 : length(A)
-    
     H{i} = HE(D{i},centers,vocabulary_size) ;
-    
 end
+
 end

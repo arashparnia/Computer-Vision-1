@@ -5,18 +5,13 @@ function d = get_descriptor(image, descriptor_type, step_size)
     %% sift_RGB
     if strcmp(descriptor_type,'sift_RGB')
         image = single(image);
-        if size(image,3) == 3 
-            image = rgb2gray(image);
-        end
-        [f, ~] = vl_sift(image);
-        
-        if size(image,3) > 1
-            [~ , d_1] = vl_sift(image(:,:,1), 'frames', f);
-            [~ , d_2] = vl_sift(image(:,:,1), 'frames', f);
-            [~ , d_3] = vl_sift(image(:,:,1), 'frames', f);
+        if size(image,3) == 3
+            [~ , d_1] = vl_sift(image(:,:,1));
+            [~ , d_2] = vl_sift(image(:,:,2));
+            [~ , d_3] = vl_sift(image(:,:,3));
             d = horzcat( d_1,d_2,d_3);
         else
-            [~ , d] = vl_sift(image(), 'frames', f);
+            [~ , d] = vl_sift(image());
         end
        
     end

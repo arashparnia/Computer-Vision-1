@@ -1,8 +1,8 @@
 
 function d = get_descriptor(image, descriptor_type, step_size)
-     % Types = 'keypoints','dense','RGB_sift', 'rgb_sift', 'Oppsift'
-    %% keypoint SIFT
-    if strcmp(descriptor_type,'keypoints')
+     % Types = sift_RGB , sift_rgb_norm , 
+    %% sift_RGB
+    if strcmp(descriptor_type,'sift_RGB')
         image = single(image);
         if size(image,3) ==3 
             image = rgb2gray(image);
@@ -18,13 +18,9 @@ function d = get_descriptor(image, descriptor_type, step_size)
         end
        
     end
-    %% RGB SIFT
-    if strcmp(descriptor_type,'RGB_sift')
-        d= vl_phow(single(image),'step', step_size , 'color','rgb');
-    end
  
-    %% rgb SIFT
-    if strcmp(descriptor_type,'norm_rgb_sift')
+    %% sift_rgb_norm
+    if strcmp(descriptor_type,'sift_rgb_norm')
         if size(image,3) > 1
             r = image(:,:,1);
             g = image(:,:,2);
@@ -51,12 +47,16 @@ function d = get_descriptor(image, descriptor_type, step_size)
         d = horzcat( d_1,d_2,d_3);
     end
 
-    %% Opponent SIFT
-    if strcmp(descriptor_type,'opponent')
-        d = vl_phow(single(image),'step', step_size,'color','opponent');
+
+    
+    
+    
+    %% dense_rgb_norm
+    if strcmp(descriptor_type,'dense_rgb')
+        d= vl_phow(single(image),'step', step_size , 'color','rgb');
     end
-    %% Dense SIFT
-    if strcmp(descriptor_type,'dense')
+    %% dense_RGB
+    if strcmp(descriptor_type,'dense_RGB')
         b = 8 ; %binsize
         m = 3 ;
         if size(image,3) == 3
@@ -78,5 +78,8 @@ function d = get_descriptor(image, descriptor_type, step_size)
         end
     end
     
-
+    %% dense_opponent
+    if strcmp(descriptor_type,'dense_opponent')
+        d = vl_phow(single(image),'step', step_size,'color','opponent');
+    end
 end

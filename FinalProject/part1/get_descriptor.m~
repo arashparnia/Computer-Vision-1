@@ -1,15 +1,13 @@
 
 function d = get_descriptor(image, descriptor_type, step_size)
-     % sift types = sift_RGB , sift_rgb_norm , sift_opponent
-     % dense sift types = dense_RGB , dense_rgb_norm , dense_opponent
+     % Types = sift_RGB , sift_rgb_norm , 
     %% sift_RGB
     if strcmp(descriptor_type,'sift_RGB')
         image = single(image);
-        if size(image,3) == 3 
+        if size(image,3) ==3 
             image = rgb2gray(image);
         end
         [f, ~] = vl_sift(image);
-        
         if size(image,3) > 1
             [~ , d_1] = vl_sift(image(:,:,1), 'frames', f);
             [~ , d_2] = vl_sift(image(:,:,1), 'frames', f);
@@ -53,26 +51,24 @@ function d = get_descriptor(image, descriptor_type, step_size)
     if strcmp(descriptor_type,'sift_opponent')
         if size(image,3) > 1
             R = image(:,:,1);
-            G = image(:,:,2);
-            B = image(:,:,3);
+            g = image(:,:,2);
+            b = image(:,:,3);
         else
-            R = image(:,:);
-            G = image(:,:);
-            B = image(:,:);
+            r = image(:,:);
+            g = image(:,:);
+            b = image(:,:);
         end
         O1=(R-G)/sqrt(2);
         O2=(R+G-(2*B))/sqrt(6);
         O3=(R+G+B)/sqrt(3);
 
-        image(:,:,1)=O1;
-        image(:,:,2)=O2;
-        image(:,:,3)=O3;
+        %create 3 images for the visualization
+        sift_opponent_image = zeros(size(image));
+        sift_opponent_image(:,:,1)=O1;
+        sift_opponent_image(:,:,2)=O2;
+        sift_opponent_image(:,:,3)=O3;
         
-        [~ , d_1] = vl_sift(image(:,:,1), 'frames', f);
-        [~ , d_2] = vl_sift(image(:,:,2), 'frames', f);
-        [~ , d_3] = vl_sift(image(:,:,3), 'frames', f);
-        d = horzcat( d_1,d_2,d_3);
-                
+                d = 
     end
     
     

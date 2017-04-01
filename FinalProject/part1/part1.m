@@ -8,95 +8,60 @@ run('../vlfeat-0.9.20/toolbox/vl_setup.m')
 
 
 % vocabulary_size = 400;
-% descriptor_type = 'dense';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 800;
-% descriptor_type = 'dense';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 1200;
-% descriptor_type = 'dense';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% 
-vocabulary_size = 400;
-descriptor_type = 'norm_rgb_sift';
-descriptor_step_size = 5;
-make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 800;
-% descriptor_type = 'norm_rgb_sift';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 1200;
-% descriptor_type = 'norm_rgb_sift';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 400;
-% descriptor_type = 'RGB_sift';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 800;
-% descriptor_type = 'RGB_sift';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 1200;
-% descriptor_type = 'RGB_sift';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% 
-% vocabulary_size = 400;
-% descriptor_type = 'opponent';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 800;
-% descriptor_type = 'opponent';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 1200;
-% descriptor_type = 'opponent';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% 
-% vocabulary_size = 400;
-% descriptor_type = 'keypoints';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 800;
-% descriptor_type = 'keypoints';
-% descriptor_step_size = 5;
-% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
-% histogram_to_classifer(vocabulary_size,descriptor_type);
-% 
-% vocabulary_size = 1200;
-% descriptor_type = 'keypoints';
+% descriptor_type = 'sift_RGB';
 % descriptor_step_size = 5;
 % make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
 % histogram_to_classifer(vocabulary_size,descriptor_type);
 
+% 
+% vocabulary_size = 800;
+% descriptor_type = 'sift_RGB';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+vocabulary_size = 1200;
+descriptor_type = 'sift_RGB';
+descriptor_step_size = 5;
+make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+% 
+% vocabulary_size = 400;
+% descriptor_type = 'sift_rgb_norm';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+% vocabulary_size = 800;
+% descriptor_type = 'sift_rgb_norm';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+% vocabulary_size = 1200;
+% descriptor_type = 'sift_rgb_norm';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+
+% vocabulary_size = 400;
+% descriptor_type = 'sift_opponent';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+% vocabulary_size = 800;
+% descriptor_type = 'sift_opponent';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+% vocabulary_size = 1200;
+% descriptor_type = 'sift_opponent';
+% descriptor_step_size = 5;
+% make_histogram(vocabulary_size,descriptor_type,descriptor_step_size);
+% histogram_to_classifer(vocabulary_size,descriptor_type);
+% 
+%

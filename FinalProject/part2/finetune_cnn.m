@@ -94,68 +94,6 @@ splits = {'train', 'test'};
 
 %% TODO: Implement your loop here, to create the data structure described in the assignment
 
-n = 0;
-for s = 1:length(splits)
-    if strcmp(splits(s),splits(1))
-        nr_images = 400;
-    else
-        nr_images = 50;
-    end
-    for i = 1:length(classes)
-        filename = char(strcat('Caltech4/ImageData/', classes(i),'_', splits(s), '/'));
-        for j = 1:nr_images
-            imagename = strcat(filename,'img',num2str(j,'%.3d'),'.jpg');
-            I = imread(imagename);
-            if size(I,3) > 1
-                n = n + 1;
-            end
-        end
-    end
-end
-
-data = zeros(32,32,3,n);
-labels = zeros(1,n);
-sets = zeros(1,n);
-ind = 1;
-
-for s = 1:length(splits)
-    if strcmp(splits(s),splits(1))
-        nr_images = 100;
-    else
-        nr_images = 20;
-    end
-    for i = 1:length(classes)
-        filename = char(strcat('Caltech4/ImageData/', classes(i),'_', splits(s), '/'));
-        for j = 1:nr_images % temporary
-            imagename = strcat(filename,'img',num2str(j,'%.3d'),'.jpg');
-            I = imread(imagename);
-            if size(I,3) > 1
-                I = single(I);
-                I = imresize(I, [32 32]);
-                data(:,:,:,ind) = I;
-                if strcmp(splits(s),splits(1))
-                    sets(ind) = 1;
-                else
-                    sets(ind) = 2;
-                end
-                
-                if strcmp(classes(i),classes(1))
-                    labels(ind) = 1;
-                elseif strcmp(classes(i),classes(2))
-                    labels(ind) = 2;
-                elseif strcmp(classes(i),classes(3))
-                    labels(ind) = 3;
-                elseif strcmp(classes(i),classes(4))
-                    labels(ind) = 4;
-                end
-                
-                ind = ind + 1;
-            end
-        end
-    end
-end
-data = single(data);
-
 % fileID_train = fopen('Caltech4/ImageSets/train.txt','r');
 % A_train = textscan(fileID_train,'%s');
 % fileID_test = fopen('Caltech4/ImageSets/test.txt','r');
@@ -166,6 +104,29 @@ data = single(data);
 % [num_images_train,~]= (size(A_train));
 % [num_images_test,~]= (size(A_test));
 % 
+c = 0;
+for s = 1:length(splits)
+    if strcmp(splits(s),splits(2))
+        num_imgs = 50;
+    else
+        num_imgs = 400;
+    end
+    for i = 1:length(classes)
+        fn = strcat('../Caltech4/ImageData/', classes(i),'_', splits(s), '/');
+        file_name = char(fn);
+        for j = 1:num_imgs
+            image_name = strcat(file_name,'img',num2str(j,'%.3d'),'.jpg');
+            image = imread(image_name);
+            if size(image,3) > 1
+                c = c + 1;
+            end
+        end
+    end
+end
+sets = single(zeros(1,c));
+labels = single(zeros(1,c));
+data = single(zeros(32,32,3,c));
+
 % num_images = num_images_train + num_images_test;
 % image  = imread(strcat('Caltech4/ImageData/',strcat(A_train{1},'.jpg')));
 % image_height = 32;
@@ -188,6 +149,47 @@ data = single(data);
 % fclose(fileID_train);
 % fclose(fileID_test);
 % 
+indecies = 1;
+for s = 1:length(splits)
+    if strcmp(splits(s),splits(1))
+        num_imgs = 400;
+    else
+        num_imgs = 50;
+    end
+    for i = 1:length(classes)
+        file_name = char(strcat('../Caltech4/ImageData/', classes(i),'_', splits(s), '/'));
+        for j = 1:num_imgs
+            image_name = strcat(file_name,'img',num2str(j,'%.3d'),'.jpg');
+            image = imread(image_name);
+            if size(image,3) > 1
+                image = single(image);
+                image = imresize(image, [32 32]);
+                data(:,:,:,indecies) = image;
+                if strcmp(splits(s),splits(1))
+                    sets(indecies) = 1;
+                else
+                    sets(indecies) = 2;
+                end
+                
+                if strcmp(classes(i),classes(1))
+                    labels(indecies) = 1;
+                elseif strcmp(classes(i),classes(2))
+                    labels(indecies) = 2;
+                elseif strcmp(classes(i),classes(3))
+                    labels(indecies) = 3;
+                elseif strcmp(classes(i),classes(4))
+                    labels(indecies) = 4;
+                end
+                indecies = indecies + 1;
+            end
+        end
+    end
+end
+data = single(data);
+labels = single(labels);
+sets = single(sets);
+
+
 %%
 % subtract mean
 dataMean = mean(data(:, :, :, sets == 1), 4);

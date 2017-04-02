@@ -62,10 +62,10 @@ function d = get_descriptor(image, descriptor_type, step_size)
         image(:,:,1)=O1;
         image(:,:,2)=O2;
         image(:,:,3)=O3;
-        
-        [~ , d_1] = vl_sift(image(:,:,1), 'frames', f);
-        [~ , d_2] = vl_sift(image(:,:,2), 'frames', f);
-        [~ , d_3] = vl_sift(image(:,:,3), 'frames', f);
+        image = single(image);
+        [~ , d_1] = vl_sift(image(:,:,1));
+        [~ , d_2] = vl_sift(image(:,:,2));
+        [~ , d_3] = vl_sift(image(:,:,3));
         d = horzcat( d_1,d_2,d_3);
                 
     end
@@ -77,7 +77,7 @@ function d = get_descriptor(image, descriptor_type, step_size)
         d= vl_phow(single(image),'step', step_size , 'color','rgb');
     end
     %% dense_RGB
-    if strcmp(descriptor_type,'dense_RGB')
+    if strcmp(descriptor_type,'dense_RGB_')
         b = 8 ; %binsize
         m = 3 ;
         if size(image,3) == 3

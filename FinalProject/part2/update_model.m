@@ -22,9 +22,9 @@ net.meta.trainOpts.learningRate = [ 0.05*ones(1,20) ...
                                     0.0005*ones(1,10)...
                                     ] ;
 net.meta.trainOpts.weightDecay = 0.0001 ;
-net.meta.trainOpts.batchSize = 50 ; %[50,100]
+net.meta.trainOpts.batchSize = 100 ; %[50,100]
 % net.meta.trainOpts.numEpochs = numel(net.meta.trainOpts.learningRate) ;
-net.meta.trainOpts.numEpochs = 80 ; %[40, 80, 120]
+net.meta.trainOpts.numEpochs = 120 ; %[40, 80, 120]
 
 %% Define network 
 net.layers = {} ;

@@ -25,15 +25,16 @@ data.images.data = single(data.images.data);
 
 vl_simplenn_display(nets.pre_trained);
 %%
-
+  figure;
 visualize(nets.pre_trained,data,'Pre trained')
 
 train_svm(nets, data);
 % 
+  figure;
 visualize(nets.fine_tuned,data,'Fine tuned') 
 
 function visualize(net, data, type)
-    figure();
+    figure;
     net.layers{end}.type = 'softmax';
     label = [];
     feats = [];

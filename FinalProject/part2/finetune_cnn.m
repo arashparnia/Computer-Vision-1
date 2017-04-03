@@ -124,6 +124,7 @@ for s = 1:length(splits)
     end
 end
 sets = single(zeros(1,c));
+
 labels = single(zeros(1,c));
 data = single(zeros(32,32,3,c));
 
@@ -188,6 +189,8 @@ end
 data = single(data);
 labels = single(labels);
 sets = single(sets);
+
+
 
 
 %%

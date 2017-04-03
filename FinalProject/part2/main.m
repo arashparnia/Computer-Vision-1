@@ -25,22 +25,21 @@ data.images.data = single(data.images.data);
 
 vl_simplenn_display(nets.pre_trained);
 %%
-  figure;
-visualize(nets.pre_trained,data,'Pre trained')
+
+make_graph(nets.pre_trained,data,'Pre trained')
 
 train_svm(nets, data);
 % 
-  figure;
-visualize(nets.fine_tuned,data,'Fine tuned') 
+ 
+make_graph(nets.fine_tuned,data,'Fine tuned') 
 
-function visualize(net, data, type)
+function make_graph(net, data, type)
     figure;
     net.layers{end}.type = 'softmax';
     label = [];
     feats = [];
-
-    for i = 1:size(data.images.data,4)
-
+    s = size(data.images.data,4);
+    for i = 1:s
         result = vl_simplenn(net, data.images.data(:, :,:, i));
         feat = result(end-3).x;
         feat = squeeze(feat);

@@ -46,7 +46,7 @@ stuff = strcat('<tr><th>method</th><td>',descriptor_type,'</td></tr>');
 fprintf(fileID2,'%s \n',stuff);
 stuff = strcat('<tr><th>Vocabulary size</th><td>',int2str(vocabulary_size),' words</td></tr>');
 fprintf(fileID2,'%s \n',stuff);
-stuff = strcat('<tr><th>Vocabulary fraction</th><td>',int2str(vocabulary_size / 200),'</td></tr>');
+stuff = strcat('<tr><th>Vocabulary fraction</th><td>',int2str(vocabulary_size) ,'/', int2str(vocabulary_size),'</td></tr>');
 fprintf(fileID2,'%s \n',stuff);
 stuff = '<tr><th>SVM training data</th><td>50 positive, 150 negative per class</td></tr>';
 fprintf(fileID2,'%s \n',stuff);

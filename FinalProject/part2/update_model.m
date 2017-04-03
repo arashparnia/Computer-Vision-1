@@ -80,7 +80,7 @@ net.layers{end+1} = struct('type', 'relu') ;
 % Block 5
 
 NEW_INPUT_SIZE  = 64;
-NEW_OUTPUT_SIZE = 4;
+NEW_OUTPUT_SIZE = 4; % 4 output to classify for 4 classes
 
 net.layers{end+1} = struct('type', 'conv', ...
                            'weights', {{0.05*randn(1,1,NEW_INPUT_SIZE,NEW_OUTPUT_SIZE, 'single'), zeros(1,NEW_OUTPUT_SIZE,'single')}}, ...

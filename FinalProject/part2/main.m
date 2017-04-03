@@ -28,10 +28,10 @@ vl_simplenn_display(nets.pre_trained);
 train_svm(nets, data);
 
 
-figure;
-make_graph(nets.pre_trained,data,'Pre trained');
-figure;
-make_graph(nets.fine_tuned,data,'Fine tuned') ;
+% figure;
+% make_graph(nets.pre_trained,data,'Pre trained');
+% figure;
+% make_graph(nets.fine_tuned,data,'Fine tuned') ;
 
 function make_graph(net, data, net_type)
     image_label = [];

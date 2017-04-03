@@ -152,11 +152,7 @@ test_label_vector = zeros(200,1);
 % % show_all_images(predict_label);
 [~, sortidx] = sort(prob_estimates(:,1),'descend');
 motorbikes = sortidx;
-AP = 0;
-for i = 1: length(sortidx)
-    AP = AP + predict_label(i) / i;
-end
-model_motorbikes_AP = AP / sum(predict_label)
+model_motorbikes_AP = AP(motorbikes,'motorbikes');
 
 % % 
 % % 
@@ -164,11 +160,7 @@ model_motorbikes_AP = AP / sum(predict_label)
 % % show_all_images(predict_label);
 [~, sortidx] = sort(prob_estimates(:,1),'descend');
 airplanes = sortidx;
-AP = 0;
-for i = 1: length(sortidx)
-    AP = AP + predict_label(i) / i;
-end
-model_airplanes_AP = AP / sum(predict_label)
+model_airplanes_AP = AP(airplanes,'airplanes');
 
 
 % % 
@@ -176,12 +168,7 @@ model_airplanes_AP = AP / sum(predict_label)
 % % show_all_images(predict_label);
 [~, sortidx] = sort(prob_estimates(:,1),'descend');
 faces = sortidx;
-AP = 0;
-for i = 1: length(sortidx)
-    AP = AP + predict_label(i) / i;
-end
-model_faces_AP = AP / sum(predict_label)
-
+model_faces_AP = AP(faces,'faces');
 
 
 % % 
@@ -189,11 +176,7 @@ model_faces_AP = AP / sum(predict_label)
 % % show_all_images(predict_label);
 [~, sortidx] = sort(prob_estimates(:,1),'descend');
 cars = sortidx;
-AP = 0;
-for i = 1: length(sortidx)
-    AP = AP + predict_label(i) / i;
-end
-model_cars_AP = AP / sum(predict_label)
+model_cars_AP = AP(cars,'cars');
 % % 
 % %% visualize
 publish_to_html(motorbikes,model_motorbikes_AP,airplanes,model_airplanes_AP,cars,model_cars_AP,faces,model_faces_AP,vocabulary_size,descriptor_type);

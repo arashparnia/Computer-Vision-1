@@ -29,9 +29,8 @@ train_svm(nets, data);
 
 
 figure;
-subplot(1,2,1);
 make_graph(nets.pre_trained,data,'Pre trained');
-subplot(1,2,2);
+figure;
 make_graph(nets.fine_tuned,data,'Fine tuned') ;
 
 function make_graph(net, data, net_type)
@@ -48,7 +47,6 @@ function make_graph(net, data, net_type)
             points = [points squeeze_net_model];
             image_label   = [image_label;  data.images.labels(i)];
         end
-
     end
     tsne_out = tsne(double(points'), double(image_label),64);
     gscatter(tsne_out(:,1),tsne_out(:,2), image_label);

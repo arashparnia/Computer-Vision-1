@@ -117,8 +117,8 @@ for s = 1:length(splits)
         for j = 1:num_imgs
             image_name = strcat(file_name,'img',num2str(j,'%.3d'),'.jpg');
             image = imread(image_name);
-            if size(image,3) > 1
-                c = c + 1;
+            if size(image,3) == 3 
+                c = c + 1; % get how many images arent gray
             end
         end
     end
@@ -162,17 +162,17 @@ for s = 1:length(splits)
         for j = 1:num_imgs
             image_name = strcat(file_name,'img',num2str(j,'%.3d'),'.jpg');
             image = imread(image_name);
-            if size(image,3) > 1
+            if size(image,3) == 3
                 image = single(image);
-                image = imresize(image, [32 32]);
+                image = imresize(image, [32 32]); % resizing
                 data(:,:,:,indecies) = image;
-                if strcmp(splits(s),splits(1))
+                if strcmp(splits(s),splits(1)) % setting split
                     sets(indecies) = 1;
                 else
                     sets(indecies) = 2;
                 end
                 
-                if strcmp(classes(i),classes(1))
+                if strcmp(classes(i),classes(1)) % setting class
                     labels(indecies) = 1;
                 elseif strcmp(classes(i),classes(2))
                     labels(indecies) = 2;

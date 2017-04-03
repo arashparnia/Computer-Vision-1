@@ -25,33 +25,33 @@ data.images.data = single(data.images.data);
 
 vl_simplenn_display(nets.pre_trained);
 %%
-
-make_graph(nets.pre_trained,data,'Pre trained')
-
 train_svm(nets, data);
-% 
- 
-make_graph(nets.fine_tuned,data,'Fine tuned') 
 
-function make_graph(net, data, type)
-    figure;
+
+figure;
+subplot(1,2,1);
+make_graph(nets.pre_trained,data,'Pre trained');
+subplot(1,2,2);
+make_graph(nets.fine_tuned,data,'Fine tuned') ;
+
+function make_graph(net, data, net_type)
+    image_label = [];
+    points = [];
+  
     net.layers{end}.type = 'softmax';
-    label = [];
-    feats = [];
+
     s = size(data.images.data,4);
     for i = 1:s
-        result = vl_simplenn(net, data.images.data(:, :,:, i));
-        feat = result(end-3).x;
-        feat = squeeze(feat);
-
-        if (data.images.set(i) ~= 1)
-            feats = [feats feat];
-            label   = [label;  data.images.labels(i)];
+        net_model = vl_simplenn(net, data.images.data(:, :,:, i));
+        squeeze_net_model = squeeze(net_model(end-3).x);
+        if ne(data.images.set(i) , 1)
+            points = [points squeeze_net_model];
+            image_label   = [image_label;  data.images.labels(i)];
         end
 
     end
-    out_tsne = tsne(double(feats'), double(label));
-    gscatter(out_tsne(:,1),out_tsne(:,2), label);
-    title(type)
-
+    tsne_out = tsne(double(points'), double(image_label),64);
+    gscatter(tsne_out(:,1),tsne_out(:,2), image_label);
+    title(net_type);
+   
 end
